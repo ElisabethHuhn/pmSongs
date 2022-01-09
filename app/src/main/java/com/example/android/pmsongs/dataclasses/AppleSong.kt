@@ -1,4 +1,4 @@
-package com.example.android.pmsongs.placeholder
+package com.example.android.pmsongs.dataclasses
 
 data class AppleSong(
     var id:        String    = "-1",

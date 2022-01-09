@@ -1,8 +1,7 @@
-package com.example.android.pmsongs
+package com.example.android.pmsongs.uicontrollers
 
 import android.content.ClipData
 import android.os.Bundle
-import android.telephony.ims.ImsMmTelManager
 import android.view.DragEvent
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -11,11 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import com.example.android.pmsongs.placeholder.PlaceholderContent
+import com.example.android.pmsongs.viewmodel.SharedFragmentViewModel
+
 import com.example.android.pmsongs.databinding.FragmentItemDetailBinding
-import com.example.android.pmsongs.placeholder.AppleSong
-import com.example.android.pmsongs.placeholder.AppleSongContent
+import com.example.android.pmsongs.dataclasses.AppleSong
+
 
 /**
  * A fragment representing a single Item detail screen.

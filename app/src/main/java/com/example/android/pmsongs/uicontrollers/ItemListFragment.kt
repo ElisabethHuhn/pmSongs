@@ -1,4 +1,4 @@
-package com.example.android.pmsongs
+package com.example.android.pmsongs.uicontrollers
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -17,11 +17,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.pmsongs.R
+import com.example.android.pmsongs.viewmodel.SharedFragmentViewModel
 
 import com.example.android.pmsongs.databinding.FragmentItemListBinding
 import com.example.android.pmsongs.databinding.ItemListContentBinding
-import com.example.android.pmsongs.placeholder.AppleSong
-import com.example.android.pmsongs.placeholder.PlaceholderContent
+import com.example.android.pmsongs.dataclasses.AppleSong
+
 
 /**
  * A Fragment representing a list of Pings. This fragment
@@ -123,7 +125,7 @@ class ItemListFragment : Fragment() {
          * experience on larger screen devices
          */
         val onContextClickListener = View.OnContextClickListener { v ->
-            val item = v.tag as PlaceholderContent.PlaceholderItem
+            val item = v.tag as AppleSong
             Toast.makeText(
                 v.context,
                 "Context click of item " + item.id,

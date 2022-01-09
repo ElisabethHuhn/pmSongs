@@ -1,4 +1,4 @@
-package com.example.android.pmsongs
+package com.example.android.pmsongs.uicontrollers
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.android.pmsongs.R
 import com.example.android.pmsongs.databinding.ActivityItemDetailBinding
 
 class ItemDetailHostActivity : AppCompatActivity() {

@@ -1,14 +1,16 @@
-package com.example.android.pmsongs
+package com.example.android.pmsongs.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.android.pmsongs.placeholder.AppleSong
+import com.example.android.pmsongs.networkapi.AppleResponse
+
+import com.example.android.pmsongs.dataclasses.AppleSong
+import com.example.android.pmsongs.networkapi.SongApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 private const val TAG = "SongFetcher"
 private const val BASE_SONG_URL = "https://itunes.apple.com/"

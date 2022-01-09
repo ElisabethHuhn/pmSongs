@@ -1,5 +1,6 @@
-package com.example.android.pmsongs
+package com.example.android.pmsongs.networkapi
 
+import com.example.android.pmsongs.networkapi.AppleResponse
 import retrofit2.Call
 import retrofit2.http.GET
 

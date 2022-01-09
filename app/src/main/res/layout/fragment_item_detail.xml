@@ -5,7 +5,7 @@
     android:id="@+id/item_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemDetailHostActivity"
+    tools:context=".uicontrollers.ItemDetailHostActivity"
     tools:ignore="MergeRootFrame">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -53,7 +53,7 @@
                 android:paddingEnd="@dimen/container_horizontal_margin"
                 android:paddingBottom="16dp"
                 android:textIsSelectable="true"
-                tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+                tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
             <TextView
                 android:id="@+id/item_collection_name"
                 style="?android:attr/textAppearanceLarge"
@@ -64,7 +64,7 @@
                 android:paddingEnd="@dimen/container_horizontal_margin"
                 android:paddingBottom="16dp"
                 android:textIsSelectable="true"
-                tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+                tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
             <TextView
                 android:id="@+id/item_track_name"
                 style="?android:attr/textAppearanceLarge"
@@ -75,7 +75,7 @@
                 android:paddingEnd="@dimen/container_horizontal_margin"
                 android:paddingBottom="16dp"
                 android:textIsSelectable="true"
-                tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+                tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

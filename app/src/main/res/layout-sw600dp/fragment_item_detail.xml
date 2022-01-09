@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         android:textIsSelectable="true"
-        tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+        tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
     <TextView
         android:id="@+id/item_collection_name_name"
         style="?android:attr/textAppearanceLarge"
@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         android:textIsSelectable="true"
-        tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+        tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
     <TextView
         android:id="@+id/item_track_name"
         style="?android:attr/textAppearanceLarge"
@@ -28,5 +28,5 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         android:textIsSelectable="true"
-        tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+        tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

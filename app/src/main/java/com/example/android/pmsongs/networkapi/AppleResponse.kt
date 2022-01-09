@@ -1,6 +1,6 @@
-package com.example.android.pmsongs
+package com.example.android.pmsongs.networkapi
 
-import com.example.android.pmsongs.placeholder.AppleSong
+import com.example.android.pmsongs.dataclasses.AppleSong
 import com.google.gson.annotations.SerializedName
 
 class AppleResponse{
