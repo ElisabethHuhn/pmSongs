@@ -6,7 +6,23 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/item_detail"
+        android:id="@+id/item_artist"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+    <TextView
+        android:id="@+id/item_collection_name_name"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="com.example.android.pmsongs.ItemDetailFragment" />
+    <TextView
+        android:id="@+id/item_track_name"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -13,18 +13,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.android.pmsongs.databinding.FragmentItemListBinding
 import com.example.android.pmsongs.databinding.ItemListContentBinding
 import com.example.android.pmsongs.placeholder.AppleSong
-import com.example.android.pmsongs.placeholder.AppleSongContent
 import com.example.android.pmsongs.placeholder.PlaceholderContent
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 /**
  * A Fragment representing a list of Pings. This fragment
@@ -35,7 +32,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  * item details side-by-side using two vertical panes.
  */
 
-private const val BASE_SONG_URL = "https://itunes.apple.com/"
+private const val TAG = "SongFetcher"
 
 class ItemListFragment : Fragment() {
 
@@ -71,34 +68,15 @@ class ItemListFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    //The shared ViewModel
+    private val sharedFragmentViewModel : SharedFragmentViewModel by activityViewModels()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Instantiate Retrofit
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl(BASE_SONG_URL)
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .build()
 
-        //use Retrofit to create our API instance
-        val songApi : SongApi = retrofit.create(SongApi::class.java)
-
-//        //use the api instance to create the web request which will be executed later
-//        val homePageRequest : Call<String> = songApi.fetchContents()
-//
-//        //now execute the Call request
-//        val callbackHandler = object : Callback<String> {
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                Log.e("ItemListFragment", "Failure Return from network call", t)
-//            }
-//
-//            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                Log.d("ItemListFragment", "Response Received: ${response.body()}") }
-//        }
-//        //enqueue the call request to Retrofit
-//        homePageRequest.enqueue(callbackHandler)
-
-    }
+     }
 
 
     override fun onCreateView(
@@ -108,7 +86,6 @@ class ItemListFragment : Fragment() {
 
         _binding = FragmentItemListBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -154,17 +131,33 @@ class ItemListFragment : Fragment() {
             ).show()
             true
         }
-        setupRecyclerView(recyclerView, onClickListener, onContextClickListener)
+
+        sharedFragmentViewModel.songListLiveData.observe(
+            viewLifecycleOwner,
+            Observer { songList ->
+                //set the local IDs of the song
+                songList.forEachIndexed{index, song ->
+                    song.id = index.toString()
+                }
+
+            setupRecyclerView(
+                recyclerView,              //RecyclerView object
+                songList,                  //Data to display
+                onClickListener,           //Listener for when user clicks on a song
+                onContextClickListener     //Listener for a long click, which involves click data
+            )}
+        )
     }
 
     private fun setupRecyclerView(
         recyclerView: RecyclerView,
+        songList: List<AppleSong>,
         onClickListener: View.OnClickListener,
         onContextClickListener: View.OnContextClickListener
     ) {
 
         recyclerView.adapter = SimpleItemRecyclerViewAdapter(
-            AppleSongContent.ITEMS,
+            songList,
             onClickListener,
             onContextClickListener
         )
@@ -177,7 +170,7 @@ class ItemListFragment : Fragment() {
     ) :
         RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleItemRecyclerViewAdapter.ViewHolder {
 
             val binding =
                 ItemListContentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -233,11 +226,13 @@ class ItemListFragment : Fragment() {
             val idView: TextView = binding.idText
             val contentView: TextView = binding.content
         }
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-}
+
+ }
+
+

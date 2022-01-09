@@ -16,5 +16,5 @@ interface SongApi {
     //returns a Call object that represents a single web request
     //  the Call itself can be executed
     //  deserialize the response to the call into a String
-    fun fetchContents (): Call<String>
+    fun fetchSongs (): Call<AppleResponse>
 }
