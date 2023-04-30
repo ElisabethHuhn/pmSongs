@@ -1,6 +1,5 @@
 package com.example.android.pmsongs.uicontrollers
 
-import android.content.ClipData
 import android.os.Bundle
 import android.view.DragEvent
 import androidx.fragment.app.Fragment
@@ -13,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.android.pmsongs.viewmodel.SharedFragmentViewModel
 
 import com.example.android.pmsongs.databinding.FragmentItemDetailBinding
-import com.example.android.pmsongs.dataclasses.AppleSong
+import com.example.android.pmsongs.model.RelatedTopic
 
 
 /**
@@ -28,29 +27,28 @@ class ItemDetailFragment : Fragment() {
     private val sharedFragmentViewModel : SharedFragmentViewModel by activityViewModels()
 
     /**
-     * The song this fragment is presenting.
+     * The character this fragment is presenting.
      */
-    private var item: AppleSong? = null
+    private var item: RelatedTopic? = null
 
-    lateinit var itemArtistTextView:     TextView
-    lateinit var itemCollectionTextView: TextView
-    lateinit var itemTrackNameTextView:  TextView
+    lateinit var itemCharacterTextView: TextView
+    lateinit var itemCharacterIconTextView: TextView
+    lateinit var itemCharacterDescriptionTextView:  TextView
     var position: Int = 0
 
     private var toolbarLayout: CollapsingToolbarLayout? = null
 
     private var _binding: FragmentItemDetailBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     private val dragListener = View.OnDragListener { v, event ->
         if (event.action == DragEvent.ACTION_DROP) {
-            val clipDataItem: ClipData.Item = event.clipData.getItemAt(0)
-            val dragData = clipDataItem.text
+//            val clipDataItem: ClipData.Item = event.clipData.getItemAt(0)
+//            val dragData = clipDataItem.text
 
-            item = sharedFragmentViewModel.getSelectedSong(position)
+            item = sharedFragmentViewModel.getSelectedCharacter(position)
 
             updateContent()
         }
@@ -72,17 +70,17 @@ class ItemDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentItemDetailBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
-        toolbarLayout          = binding.toolbarLayout
-        itemArtistTextView     = binding.itemArtist
-        itemCollectionTextView = binding.itemCollectionName!!
-        itemTrackNameTextView  = binding.itemTrackName
+        toolbarLayout                    = binding.toolbarLayout
+        itemCharacterTextView            = binding.itemCharacter
+        itemCharacterIconTextView        = binding.itemCharacterIcon
+        itemCharacterDescriptionTextView = binding.itemCharacterDescription
 
-        item = sharedFragmentViewModel.getSelectedSong(position)
+        item = sharedFragmentViewModel.getSelectedCharacter(position)
 
         updateContent()
         rootView.setOnDragListener(dragListener)
@@ -95,10 +93,10 @@ class ItemDetailFragment : Fragment() {
 
         // Show the placeholder content as text in a TextView.
         item?.let {
-            itemArtistTextView.text     = it.artistName
-            itemCollectionTextView.text = it.collectionName
-            itemTrackNameTextView.text  = it.trackName
-         }
+            itemCharacterTextView.text     = it.FirstURL
+            itemCharacterIconTextView.text = it.Icon.URL
+            itemCharacterDescriptionTextView.text  = it.Text
+        }
     }
 
     companion object {

@@ -1,20 +1,25 @@
-README for ParkMobile take home coding example
+# RealogyCodingChallenge
+Coding challenge for Realogy. Item/Detail with Retrofit.
 January 9 2022 by Elisabeth Huhn
 
-The task set for the coding example is:
-Use the iTunes search API to create a simple application that
-retrieves and displays information about your favorite musician or genre of music.
+# Bugs to FIX
+* crashes immediately
 
+# Task
+The task set for the coding example is:
+Use the search API to create a simple application that
+retrieves and displays information about your favorite characters.
+
+# Requirements
 The Requirements call for:
-o One screen that displays a list of songs retrieved from the iTunes API. Any songs will do!
-o If a user taps on an item in your list,
-  a second screen that shows more in-depth information about the song
-o Use Kotlin
+* One screen that displays a list of songs retrieved from the iTunes API. Any songs will do!
+* If a user taps on an item in your list, a second screen that shows more in-depth information about the song
+*  Use Kotlin
 The final requirement urges broad use of:
- oo code architecture,
- oo navigation,
- oo user experience, and
- oo visual components.
+ * code architecture,
+ * navigation,
+ * user experience, and
+ * visual components.
 
 Currently the app architecture is a typical MVVM architecture with Retrofit Network API calls
 
@@ -29,9 +34,9 @@ The app "as is" is bare bones. Not terribly exciting visually, not very flexible
 It is meant mostly to illustrate a bare bones MVVM architecture with Retrofit API network access.
 
 There are some extras that came for free from Android Studio:
-o Listeners for Drag
-o Listeners for Clip Paste
-o Listeners for keyboard CTL F find and CTL Z undo
+* Listeners for Drag
+* Listeners for Clip Paste
+ * Listeners for keyboard CTL F find and CTL Z undo
 None of which actually do much more than toast in this app
 
 The obvious next steps are:
@@ -44,16 +49,16 @@ I would envision another fragment that would allow the user to input parameter k
 that would then be used to build a URL for the @GET
 
 Apple provides search parameter keys for:
-o term
-o country
-o media
-o entity
-o attribute
-o callback
-o limit
-o lang
-o version
-o explicit
+ * term
+ * country
+ * media
+ * entity
+ * attribute
+ * callback
+ * limit
+ * lang
+ * version
+ * explicit
 
 4) There is no automatic testing. This flies in the face of TDD, but I look at the app as a
 prototype. Prototypes are meant to be build fast and be able to be learned from and

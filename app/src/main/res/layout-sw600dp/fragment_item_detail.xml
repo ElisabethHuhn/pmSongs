@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/item_artist"
+        android:id="@+id/item_character"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +14,7 @@
         android:textIsSelectable="true"
         tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
     <TextView
-        android:id="@+id/item_collection_name_name"
+        android:id="@+id/item_character_icon"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,7 @@
         android:textIsSelectable="true"
         tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
     <TextView
-        android:id="@+id/item_track_name"
+        android:id="@+id/item_character_description"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

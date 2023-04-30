@@ -2,16 +2,16 @@ package com.example.android.pmsongs.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.pmsongs.dataclasses.AppleSong
-import com.example.android.pmsongs.repository.SongFetcher
+import com.example.android.pmsongs.model.RelatedTopic
+import com.example.android.pmsongs.repository.CharacterFetcher
 
 class SharedFragmentViewModel : ViewModel() {
-    val songListLiveData: LiveData<List<AppleSong>>
+    val characterListLiveData: LiveData<List<RelatedTopic>>
     init {
-        songListLiveData = SongFetcher().fetchContents()
+        characterListLiveData = CharacterFetcher().fetchContents()
     }
 
-    fun getSelectedSong(position: Int): AppleSong {
-        return songListLiveData.value!![position]
+    fun getSelectedCharacter(position: Int): RelatedTopic {
+        return characterListLiveData.value!![position]
     }
 }

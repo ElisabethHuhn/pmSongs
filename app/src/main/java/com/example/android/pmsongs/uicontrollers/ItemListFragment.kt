@@ -22,11 +22,11 @@ import com.example.android.pmsongs.viewmodel.SharedFragmentViewModel
 
 import com.example.android.pmsongs.databinding.FragmentItemListBinding
 import com.example.android.pmsongs.databinding.ItemListContentBinding
-import com.example.android.pmsongs.dataclasses.AppleSong
+import com.example.android.pmsongs.model.RelatedTopic
 
 
 /**
- * A Fragment representing a list of Pings. This fragment
+ * A Fragment representing a list of Characters. This fragment
  * has different presentations for handset and larger screen devices. On
  * handsets, the fragment presents a list of items, which when touched,
  * lead to a {@link ItemDetailFragment} representing
@@ -34,7 +34,6 @@ import com.example.android.pmsongs.dataclasses.AppleSong
  * item details side-by-side using two vertical panes.
  */
 
-private const val TAG = "SongFetcher"
 
 class ItemListFragment : Fragment() {
 
@@ -84,7 +83,7 @@ class ItemListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentItemListBinding.inflate(inflater, container, false)
         return binding.root
@@ -105,15 +104,14 @@ class ItemListFragment : Fragment() {
          * a single pane layout or two pane layout
          */
         val onClickListener = View.OnClickListener { itemView ->
-            val item = itemView.tag as AppleSong
+            val item = itemView.tag as RelatedTopic
             val bundle = Bundle()
             bundle.putString(
                 ItemDetailFragment.ARG_ITEM_ID,
                 item.id
             )
             if (itemDetailFragmentContainer != null) {
-                itemDetailFragmentContainer.findNavController()
-                    .navigate(R.id.fragment_item_detail, bundle)
+                itemDetailFragmentContainer.findNavController().navigate(R.id.fragment_item_detail, bundle)
             } else {
                 itemView.findNavController().navigate(R.id.show_item_detail, bundle)
             }
@@ -125,7 +123,7 @@ class ItemListFragment : Fragment() {
          * experience on larger screen devices
          */
         val onContextClickListener = View.OnContextClickListener { v ->
-            val item = v.tag as AppleSong
+            val item = v.tag as RelatedTopic
             Toast.makeText(
                 v.context,
                 "Context click of item " + item.id,
@@ -134,39 +132,37 @@ class ItemListFragment : Fragment() {
             true
         }
 
-        sharedFragmentViewModel.songListLiveData.observe(
-            viewLifecycleOwner,
-            Observer { songList ->
-                //set the local IDs of the song
-                songList.forEachIndexed{index, song ->
-                    song.id = index.toString()
+        sharedFragmentViewModel.characterListLiveData.observe(viewLifecycleOwner)
+        { characterList ->
+                //set the local IDs of the characters
+                characterList.forEachIndexed{index, character ->
+                    character.id = index.toString()
                 }
 
             setupRecyclerView(
-                recyclerView,              //RecyclerView object
-                songList,                  //Data to display
-                onClickListener,           //Listener for when user clicks on a song
-                onContextClickListener     //Listener for a long click, which involves click data
-            )}
-        )
+                recyclerView,          //RecyclerView object
+                characterList,         //Data to display
+                onClickListener,       //Listener for when user clicks on a character
+                onContextClickListener //Listener for a long click, which involves click data
+            )
+        }
     }
 
     private fun setupRecyclerView(
         recyclerView: RecyclerView,
-        songList: List<AppleSong>,
+        characterList: List<RelatedTopic>,
         onClickListener: View.OnClickListener,
         onContextClickListener: View.OnContextClickListener
     ) {
-
         recyclerView.adapter = SimpleItemRecyclerViewAdapter(
-            songList,
+            characterList,
             onClickListener,
             onContextClickListener
         )
     }
 
     class SimpleItemRecyclerViewAdapter(
-        private val values: List<AppleSong>,
+        private val values: List<RelatedTopic>,
         private val onClickListener: View.OnClickListener,
         private val onContextClickListener: View.OnContextClickListener
     ) :
@@ -183,7 +179,7 @@ class ItemListFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = values[position]
             holder.idView.text = item.id
-            holder.contentView.text = item.trackName
+            holder.contentView.text = item.Text
 
             with(holder.itemView) {
                 tag = item
@@ -235,6 +231,6 @@ class ItemListFragment : Fragment() {
         _binding = null
     }
 
- }
+}
 
 

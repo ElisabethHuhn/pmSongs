@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_detail_container"
@@ -44,7 +45,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/item_artist"
+                android:id="@+id/item_character"
                 style="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -55,7 +56,7 @@
                 android:textIsSelectable="true"
                 tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
             <TextView
-                android:id="@+id/item_collection_name"
+                android:id="@+id/item_character_icon"
                 style="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -66,7 +67,7 @@
                 android:textIsSelectable="true"
                 tools:context="com.example.android.pmsongs.uicontrollers.ItemDetailFragment" />
             <TextView
-                android:id="@+id/item_track_name"
+                android:id="@+id/item_character_description"
                 style="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -89,6 +90,8 @@
         android:layout_marginBottom="16dp"
         app:layout_anchor="@+id/item_detail_scroll_view"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        app:srcCompat="@android:drawable/stat_notify_chat"
+        android:contentDescription="@string/floating_button"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
