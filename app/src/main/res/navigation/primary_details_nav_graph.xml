@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/item_list_fragment"
         android:name="com.example.android.pmsongs.uicontrollers.ItemListFragment"
-        android:label="SongListFragment">
+        android:label="@string/character_list_fragment_title">
         <action
             android:id="@+id/show_item_detail"
             app:destination="@id/item_detail_fragment" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/item_detail_fragment"
         android:name="com.example.android.pmsongs.uicontrollers.ItemDetailFragment"
-        android:label="song_detail"
+        android:label="@string/character_detail"
         tools:layout="@layout/fragment_item_detail">
         <argument
             android:name="item_id"

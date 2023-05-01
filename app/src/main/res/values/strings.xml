@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">PMSongs</string>
-    <string name="title_item_detail">Song Detail</string>
+    <string name="app_name">Realogy</string>
+    <string name="title_item_detail">Character Detail</string>
+    <string name="floating_button">Floating Button For ??????</string>
+    <string name="character_list_fragment_title">Character List Fragment</string>
+    <string name="character_detail">Character Detail</string>
 </resources>

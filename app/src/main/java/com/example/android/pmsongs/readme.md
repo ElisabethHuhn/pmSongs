@@ -4,6 +4,7 @@ January 9 2022 by Elisabeth Huhn
 
 # Bugs to FIX
 * crashes immediately
+* bring readme up to date
 
 # Task
 The task set for the coding example is:
@@ -12,8 +13,8 @@ retrieves and displays information about your favorite characters.
 
 # Requirements
 The Requirements call for:
-* One screen that displays a list of songs retrieved from the iTunes API. Any songs will do!
-* If a user taps on an item in your list, a second screen that shows more in-depth information about the song
+* One screen that displays a list of characters retrieved from the iTunes API. 
+* If a user taps on an item in your list, a second screen that shows more in-depth information about the character
 *  Use Kotlin
 The final requirement urges broad use of:
  * code architecture,
@@ -23,14 +24,14 @@ The final requirement urges broad use of:
 
 Currently the app architecture is a typical MVVM architecture with Retrofit Network API calls
 
-The accesses the search Apple Songs API to return a canned search parameter list of songs
+The accesses the search API to return a canned search parameter list of characters
 The canned search parameter is the example provided by Apple at
 https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/SearchExamples.html#//apple_ref/doc/uid/TP40017632-CH6-SW1
 
 Specifically, the search parameter is:
 https://itunes.apple.com/search?term=jack+johnson&limit=25
 
-The app "as is" is bare bones. Not terribly exciting visually, not very flexible in the song list returned.
+The app "as is" is bare bones. Not terribly exciting visually, not very flexible in the character list returned.
 It is meant mostly to illustrate a bare bones MVVM architecture with Retrofit API network access.
 
 There are some extras that came for free from Android Studio:
@@ -40,7 +41,7 @@ There are some extras that came for free from Android Studio:
 None of which actually do much more than toast in this app
 
 The obvious next steps are:
-1) To show more song details on the Details Fragment
+1) To show more character details on the Details Fragment
 
 2) To make the UI more visually appealing
 

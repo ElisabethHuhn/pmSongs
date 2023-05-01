@@ -9,7 +9,7 @@ private const val WIRE_CHARACTER_URL = "?q=the+wire+characters&format=json"
 
 
 interface CharacterApi {
-    //The GET activates the Apple search
+    //The GET activates the search
     @GET(SIMPSONS_CHARACTER_URL)
     //returns a Call object that represents a single web request
     //  the Call itself can be executed

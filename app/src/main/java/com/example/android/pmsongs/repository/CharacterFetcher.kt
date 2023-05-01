@@ -13,7 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "CharacterFetcher"
-private const val BASE_CHARACTER_URL = "http://api.duckduckgo.com/"
+private const val BASE_CHARACTER_URL = "https://api.duckduckgo.com/"
 
 class CharacterFetcher {
     private val characterApi: CharacterApi
@@ -33,7 +33,7 @@ class CharacterFetcher {
         val responseLiveData: MutableLiveData<List<RelatedTopic>> = MutableLiveData()
 
         //use the api instance to create the web request which will be executed later
-        val appleCharacterRequest : Call<ApiResponse> = characterApi.fetchCharacters()
+        val characterRequest : Call<ApiResponse> = characterApi.fetchCharacters()
 
         //now execute the Call request
         val callbackHandler = object : Callback<ApiResponse> {
@@ -43,15 +43,23 @@ class CharacterFetcher {
 
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 Log.d(TAG, "Response Received")
-                val apiResponse: ApiResponse? = response.body()
-                val characters: List<CartoonCharacter> = (apiResponse?.characterHeader ?: mutableListOf())
-                val characterList: List<RelatedTopic> =characters?.get(0)?.RelatedTopics ?: mutableListOf()
+                val apiResponse: ApiResponse?
+                var characters: List<CartoonCharacter> = mutableListOf()
+                var characterList: List<RelatedTopic> = mutableListOf()
+
+                try {
+                    apiResponse = response.body()
+                    characters = (apiResponse?.characterHeader ?: mutableListOf())
+                    characterList = characters.get(0).RelatedTopics ?: mutableListOf()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Exception caught accessing response ${e.message}")
+                }
 
                 responseLiveData.value = characterList
             }
         }
         //enqueue the call request to Retrofit
-        appleCharacterRequest.enqueue(callbackHandler)
+        characterRequest.enqueue(callbackHandler)
 
         return responseLiveData
     }
