@@ -35,7 +35,7 @@ class CharacterFetcher {
         //use the api instance to create the web request which will be executed later
         val characterRequest : Call<ApiResponse> = characterApi.fetchCharacters()
 
-        //now execute the Call request
+        //Define the code to execute upon request return
         val callbackHandler = object : Callback<ApiResponse> {
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 Log.e(TAG, "Failure Return from network call", t)
@@ -48,7 +48,15 @@ class CharacterFetcher {
                 var characterList: List<RelatedTopic> = mutableListOf()
 
                 try {
+                    val responseCode = response.code()
+                    val responseMessage = response.message()
+                    val responseIsSuccessful = response.isSuccessful
+                    val responseHeaders = response.headers()
+                    val responseErrorBody = response.errorBody()
+                    val responseDebug = "code = $responseCode, isSuccessful = $responseIsSuccessful, message = $responseMessage, headers = $responseHeaders, error = $responseErrorBody"
+                    Log.i(TAG, responseDebug)
                     apiResponse = response.body()
+//                    val innerResponse = response.body().getValue()
                     characters = (apiResponse?.characterHeader ?: mutableListOf())
                     characterList = characters.get(0).RelatedTopics ?: mutableListOf()
                 } catch (e: Exception) {
