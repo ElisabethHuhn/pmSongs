@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.android.pmsongs.model.CartoonCharacter
 import com.example.android.pmsongs.model.RelatedTopic
 import com.example.android.pmsongs.networkapi.ApiResponse
+import com.example.android.pmsongs.networkapi.BASE_CHARACTER_URL
 import com.example.android.pmsongs.networkapi.CharacterApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,7 +14,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "CharacterFetcher"
-private const val BASE_CHARACTER_URL = "https://api.duckduckgo.com/"
 
 class CharacterFetcher {
     private val characterApi: CharacterApi
@@ -35,7 +35,7 @@ class CharacterFetcher {
         //use the api instance to create the web request which will be executed later
         val characterRequest : Call<ApiResponse> = characterApi.fetchCharacters()
 
-        //Define the code to execute upon request return
+        //Define the callback code to execute upon request return
         val callbackHandler = object : Callback<ApiResponse> {
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 Log.e(TAG, "Failure Return from network call", t)
@@ -57,12 +57,11 @@ class CharacterFetcher {
                     Log.i(TAG, responseDebug)
                     apiResponse = response.body()
 //                    val innerResponse = response.body().getValue()
-                    characters = (apiResponse?.characterHeader ?: mutableListOf())
+                    characters = (apiResponse?.characterJsonDataList ?: mutableListOf())
                     characterList = characters.get(0).RelatedTopics ?: mutableListOf()
                 } catch (e: Exception) {
                     Log.e(TAG, "Exception caught accessing response ${e.message}")
                 }
-
                 responseLiveData.value = characterList
             }
         }
