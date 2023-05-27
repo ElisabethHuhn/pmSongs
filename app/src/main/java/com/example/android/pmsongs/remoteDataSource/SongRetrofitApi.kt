@@ -1,10 +1,8 @@
-package com.example.android.pmsongs.networkapi
+package com.example.android.pmsongs.remoteDataSource
 
-import com.example.android.pmsongs.networkapi.AppleResponse
 import retrofit2.Call
 import retrofit2.http.GET
 
-private const val SONGS_ENDPOINT_BASE = "/"
 private const val SONGS_SEARCH = "/search?"
 private const val SONGS_PLUS = "&"
 private const val SONGS_JJ = "term=jack+johnson"
@@ -17,5 +15,5 @@ interface SongApi {
     //returns a Call object that represents a single web request
     //  the Call itself can be executed
     //  deserialize the response to the call into a String
-    fun fetchSongs (): Call<AppleResponse>
+    fun fetchSongs(): Call<AppleResponse>
 }

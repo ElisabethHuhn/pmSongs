@@ -1,4 +1,4 @@
-package com.example.android.pmsongs.networkapi
+package com.example.android.pmsongs.remoteDataSource
 
 import com.example.android.pmsongs.dataclasses.AppleSong
 import com.google.gson.annotations.SerializedName

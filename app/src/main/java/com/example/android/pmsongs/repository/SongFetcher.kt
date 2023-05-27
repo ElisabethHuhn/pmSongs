@@ -2,10 +2,10 @@ package com.example.android.pmsongs.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.android.pmsongs.networkapi.AppleResponse
+import com.example.android.pmsongs.remoteDataSource.AppleResponse
 
 import com.example.android.pmsongs.dataclasses.AppleSong
-import com.example.android.pmsongs.networkapi.SongApi
+import com.example.android.pmsongs.remoteDataSource.SongApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

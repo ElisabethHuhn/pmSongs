@@ -16,7 +16,7 @@ The final requirement urges broad use of:
  oo user experience, and
  oo visual components.
 
-Currently the app architecture is a typical MVVM architecture with Retrofit Network API calls
+Currently the app architecture is a typical RecyclerView MVVM architecture with Retrofit Network API calls
 
 The accesses the search Apple Songs API to return a canned search parameter list of songs
 The canned search parameter is the example provided by Apple at
@@ -26,7 +26,39 @@ Specifically, the search parameter is:
 https://itunes.apple.com/search?term=jack+johnson&limit=25
 
 The app "as is" is bare bones. Not terribly exciting visually, not very flexible in the song list returned.
-It is meant mostly to illustrate a bare bones MVVM architecture with Retrofit API network access.
+It is meant mostly to illustrate a bare bones RecyclerView MVVM architecture with Retrofit API network access.
+
+Architecture Notes:
+1) Retrofit Notes
+    A) The ApiService is named SongRetrofitApi
+    B) The response to the only api call defined in SongRetrofitApi is separately defined in AppleResponse
+        i) if several more APIService calls are defined,
+            a) much better class names need to be found
+            b) things could get messy fast if there are a lot of additional calls defined
+    C) Data is passed from the API Response to the UI Fragment via LiveData in the SharedViewModel
+       i)   the fragment registers as observing the LiveData variable, with a lamda defined that will
+            execute whenever the LiveData variable changes its value
+       ii)  The retrofit api callback transfers information from the API response to the ViewModel LiveData
+       iii) When the viewModel LiveData is changed, the lambda executes.
+2) MVVM Architecture Notes
+    A) The UI architecture is XML, Fragments, and RecyclerViews rather than Compose
+    B) ViewBinding and NavHost Graph navigation are used in this app
+    C) There is only a single shared ViewModel defined between the Activity and all Fragments
+       i) as an app gets bigger, this could get messy. Consider separating into a view model per ui controller
+    D) The Repository is poorly named SongFetcher. By all rights, this should only be an internal
+       call within a more general SongRepository
+3) RecyclerView Notes:
+    A) The things needed to set up the RecyclerViewAdapter are defined at the Fragment level. These are:
+       i) User Even listeners: onClick, onLongClick, onContextClickListenre, etc
+       ii) LiveData observer lambdas for the RecyclerView list updates
+       iii) The details of these should probably be in the ViewModel, and just invoked
+            from the listeners and observers
+       iv) The Adapter is defined in the method setupRecyclerView
+       v) The adapter class itself is contained within the Fragment file, rather than in a file of its own
+            a) onCreateViewHodler()
+            b) onBindViewHolder()
+            c) getItemCount()
+            d) inner class definition of ViewHolder()
 
 There are some extras that came for free from Android Studio:
 o Listeners for Drag
@@ -86,11 +118,11 @@ So it is incumbent on us as software professionals to design a process where "Th
 SUCCESS.
 
 - Show something early and often
-- Do not get so engrossed in adding features that it is too expensive to throw away if not useful
+- Do not get so engrossed in adding features that are too expensive to throw away if not useful
 
 And one last proverb
 If you don't know what success looks like before you start, then it doesn't matter what you do,
-when you are done someone important will think you failed.
+when you are done someone *important* will think you failed.
 
 Which gives me another good reason for making a process where "That ain't it" is success,
 because we are certain to encounter it.

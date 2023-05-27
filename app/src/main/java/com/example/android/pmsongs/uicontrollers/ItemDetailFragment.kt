@@ -72,7 +72,7 @@ class ItemDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentItemDetailBinding.inflate(inflater, container, false)
         val rootView = binding.root
@@ -93,7 +93,6 @@ class ItemDetailFragment : Fragment() {
     private fun updateContent() {
         toolbarLayout?.title = item?.id
 
-        // Show the placeholder content as text in a TextView.
         item?.let {
             itemArtistTextView.text     = it.artistName
             itemCollectionTextView.text = it.collectionName
