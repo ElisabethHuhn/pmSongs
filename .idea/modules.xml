@@ -7,10 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StudioProjects.pmSongs.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StudioProjects.pmSongs.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StudioProjects.pmSongs.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StudioProjects.pmSongs.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/pmSongs.iml" filepath="$PROJECT_DIR$/.idea/modules/pmSongs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pmSongs.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pmSongs.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pmSongs.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pmSongs.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pmSongs.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pmSongs.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pmSongs.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pmSongs.app.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -11,7 +11,7 @@ const val BASE_CHARACTER_URL = "https://api.duckduckgo.com/"
 
 interface CharacterApi {
     //The GET activates the search
-    @GET(SIMPSONS_CHARACTER_URL)
+    @GET(WIRE_CHARACTER_URL)
     //returns a Call object that represents a single web request
     //  the Call itself can be executed
     //  deserialize the response to the call into a String
